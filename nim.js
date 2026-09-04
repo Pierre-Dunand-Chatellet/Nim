@@ -1,5 +1,8 @@
 "use strict";
 
+// portage web du jeu de Nim que j'avais fait en Python (Tkinter) au départ.
+// mêmes règles, même IA, juste réécrit pour tourner dans le navigateur.
+
 const TOTAL_OBJECTS = 20;
 const NIVEAUX = { 1: "Apprenti", 2: "Stratège", 3: "Imbattable" };
 
@@ -21,6 +24,8 @@ const endPanel = document.getElementById("end-panel");
 const replayBtn = document.getElementById("replay-btn");
 const takeButtons = Array.from(document.querySelectorAll("[data-take]"));
 
+// je génère les 20 ronds en JS plutôt que de les coder en dur dans le HTML,
+// comme ça si un jour je change TOTAL_OBJECTS le plateau suit tout seul
 for (let i = 0; i < TOTAL_OBJECTS; i++) {
   const dot = document.createElement("div");
   dot.className = "dot";
@@ -40,22 +45,31 @@ function randInt(min, max) {
 }
 
 // ── Logique IA (portage fidèle du jeux.py) ──────────────────────────────
+// le truc à comprendre sur le Nim : avec un max de 3 objets par tour, une pile
+// multiple de 4 est perdante pour celui qui doit jouer (quoi qu'il prenne, l'autre
+// ramène toujours sur le prochain multiple de 4). donc "jouer parfait" = toujours
+// laisser un multiple de 4 à l'adversaire.
 function choixOrdinateur(nbObjet, difficulte) {
   if (difficulte === 1) {
+    // Apprenti : joue au hasard, mais finit la partie s'il peut (sinon ça traîne)
     if (nbObjet <= 3) return nbObjet;
     return randInt(1, 3);
   }
   if (difficulte === 2) {
+    // Stratège : hasard tant qu'il reste beaucoup d'objets, calcule en dessous de 13
     if (nbObjet < 13) {
       const reste = nbObjet % 4;
       return reste === 0 ? randInt(1, 3) : reste;
     }
     return randInt(1, 3);
   }
+  // Imbattable : applique la stratégie optimale du début à la fin
   const reste = nbObjet % 4;
   return reste === 0 ? randInt(1, 3) : reste;
 }
 
+// tous les boutons du menu / difficulté sont branchés via des data-attributes
+// plutôt que des id un par un, ça évite d'oublier un bouton si j'en rajoute
 document.querySelectorAll("[data-action='pvp']").forEach((b) =>
   b.addEventListener("click", () => startGame("pvp"))
 );
@@ -76,6 +90,9 @@ takeButtons.forEach((b) =>
 );
 
 function startGame(mode, difficulte) {
+  // le joueur 1 ouvre toujours la partie, mais qui EST le joueur 1 (humain ou
+  // ordi) est tiré au sort à chaque partie — sinon l'ordi aurait toujours
+  // l'avantage (ou toujours le désavantage) d'ouvrir, ce qui serait pas fair-play
   const roles = { humain: null, ordinateur: null };
   if (mode === "pvc") {
     if (Math.random() < 0.5) {
@@ -115,11 +132,15 @@ function startGame(mode, difficulte) {
   showScreen("game");
   refresh();
 
+  // si l'ordi commence, il faut déclencher son coup nous-mêmes (sinon rien
+  // ne se passe, personne n'a cliqué). petit délai pour que ça paraisse
+  // moins instantané/robotique
   if (mode === "pvc" && state.joueur === state.ordinateur) {
     setTimeout(computerPlay, 1200);
   }
 }
 
+// remet à jour tout l'affichage à partir de state — appelée après chaque coup
 function refresh() {
   countDisplay.textContent = String(state.nbObjet);
 
@@ -169,6 +190,9 @@ function computerPlay() {
 
 function applyMove(n) {
   state.nbObjet -= n;
+  // règle du jeu : celui qui prend le DERNIER objet gagne, donc dès qu'il
+  // n'en reste plus, la partie est finie et c'est le joueur qui vient de
+  // jouer qui a gagné
   if (state.nbObjet === 0) {
     refresh();
     endGame();

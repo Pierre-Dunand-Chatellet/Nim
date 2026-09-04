@@ -6,6 +6,8 @@
   padding: 0;
 }
 
+/* palette "mode lecture" sépia, reprise directement du jeu Python d'origine
+   (couleurs douces pour les yeux, pas de blanc pur) */
 :root {
   --bg: #EADDCD;
   --panel: #DCC7B0;
@@ -210,6 +212,8 @@ body {
   text-transform: uppercase;
 }
 
+/* la barre de progression + la grille de ronds, ça remplace le canvas
+   que je dessinais à la main en Tkinter dans la version Python */
 .board {
   margin: 1.5rem 0;
 }
@@ -286,6 +290,8 @@ body {
   margin-top: 1rem;
 }
 
+/* sans cette ligne le [hidden] de l'HTML ne suffit pas : ma règle .end-panel
+   juste au-dessus force déjà un display, donc il faut le re-forcer à none ici */
 .end-panel[hidden] {
   display: none;
 }
