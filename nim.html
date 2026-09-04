@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeu de Nim - Pierre Dunand-Chatellet</title>
+  <meta name="description" content="Jeu de Nim jouable en ligne : défiez un ami en local ou affrontez l'ordinateur sur 3 niveaux de difficulté.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/webp" href="Image/JDN.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nim.css">
+</head>
+
+<body>
+  <a class="back-link" href="../projets.html#python">Retour au portfolio</a>
+
+  <main class="nim-app">
+
+    <section id="screen-menu" class="screen is-active">
+      <div class="panel">
+        <h1 class="title">Jeu de Nim</h1>
+        <p class="subtitle">Un duel tactique : celui qui prend le dernier objet gagne !</p>
+        <button class="btn btn-accent" data-action="pvp">Défier un ami (Local)</button>
+        <button class="btn btn-accent" data-action="show-difficulty">Affronter l'ordinateur</button>
+        <p class="hint">Configuration : 20 objets · 1 à 3 par tour</p>
+        <p class="hint"><a class="exe-link" href="Nim.exe">Télécharger la version Windows (.exe)</a></p>
+      </div>
+    </section>
+
+    <section id="screen-difficulty" class="screen">
+      <div class="panel">
+        <h1 class="title gold">Choix du niveau</h1>
+        <p class="subtitle">À quel point votre adversaire doit-il être redoutable ?</p>
+        <button class="btn btn-green" data-difficulty="1">Apprenti (Idéal pour s'entraîner)</button>
+        <button class="btn btn-gold" data-difficulty="2">Stratège (Un défi équilibré)</button>
+        <button class="btn btn-accent" data-difficulty="3">Imbattable (Esprit mathématique)</button>
+        <button class="btn btn-muted" data-action="back-menu">Retour au menu</button>
+      </div>
+    </section>
+
+    <section id="screen-game" class="screen">
+      <div class="game-header">
+        <h1 class="title small">Jeu de Nim</h1>
+        <p class="game-info" id="game-info"></p>
+      </div>
+
+      <div class="turn-block">
+        <p class="turn-label" id="turn-label"></p>
+        <p class="count" id="count-display">20</p>
+        <p class="count-caption">objets restants sur la table</p>
+      </div>
+
+      <div class="board">
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+          <span class="progress-text" id="progress-text">20 / 20</span>
+        </div>
+        <div class="dots-grid" id="dots-grid"></div>
+      </div>
+
+      <p class="log" id="log-message"></p>
+
+      <div class="actions" id="actions-row">
+        <span class="actions-label">Prendre :</span>
+        <button class="btn btn-take" data-take="1">1 objet</button>
+        <button class="btn btn-take" data-take="2">2 objets</button>
+        <button class="btn btn-take" data-take="3">3 objets</button>
+      </div>
+
+      <div class="end-panel" id="end-panel" hidden>
+        <button class="btn btn-green" id="replay-btn"></button>
+      </div>
+
+      <button class="btn btn-muted" data-action="quit">Quitter la partie</button>
+    </section>
+
+  </main>
+
+  <script src="nim.js"></script>
+</body>
+
+</html>
