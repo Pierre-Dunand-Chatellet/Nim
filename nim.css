@@ -30,6 +30,7 @@ html {
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-b);
@@ -61,6 +62,7 @@ body {
 .nim-app {
   display: flex;
   min-height: 100vh;
+  min-height: 100dvh;
   align-items: center;
   justify-content: center;
   padding: 6rem 1.5rem 3rem;
@@ -308,4 +310,11 @@ body {
   .nim-app {
     padding-top: 5rem;
   }
+}
+
+/* Focus clavier : un contour visible sur tout ce qu'on atteint avec Tab.
+   :focus-visible ne s'affiche pas au clic souris, seulement au clavier. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
