@@ -1,8 +1,28 @@
 # Jeu de Nim
 
-Jeu de Nim (20 objets, 1 à 3 par tour, le dernier objet pris gagne), avec 3 niveaux d'IA.
+Jeu de Nim : 20 objets sur la table, on en prend 1 à 3 par tour, et celui qui prend
+le dernier gagne. Trois niveaux d'adversaire.
 
-- `python-source/nim.py` : version originale en Python (Tkinter), compilée en `.exe`
-- `nim.html` / `nim.css` / `nim.js` : portage fidèle jouable directement dans le navigateur
+En ligne : https://dunandchatellet.fr/Nim/nim.html
 
-Fait partie du [portfolio de Pierre Dunand-Chatellet](https://github.com/Pierre-Dunand-Chatellet).
+## Deux versions du même jeu
+
+| Version | Fichiers |
+| --- | --- |
+| Originale, en Python (Tkinter) | `python-source/nim.py`, compilée en `Nim.exe` |
+| Portage web, jouable sans rien installer | `nim.html`, `nim.css`, `nim.js` |
+
+Le portage suit la version Python règle pour règle, y compris la stratégie de l'adversaire.
+
+## Lancer la version Python
+
+```bash
+python python-source/nim.py
+```
+
+Tkinter est fourni avec Python. Le `.exe` livré n'est pas signé : Windows affiche
+un avertissement SmartScreen au premier lancement.
+
+---
+
+Pierre Dunand-Chatellet — [tous mes projets](https://dunandchatellet.fr/projets.html)
