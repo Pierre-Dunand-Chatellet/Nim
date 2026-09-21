@@ -1,5 +1,7 @@
 # Jeu de Nim
 
+![Aperçu du projet](apercu.jpg)
+
 Jeu de Nim : 20 objets sur la table, on en prend 1 à 3 par tour, et celui qui prend
 le dernier gagne. Trois niveaux d'adversaire.
 
