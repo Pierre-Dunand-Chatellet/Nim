@@ -12,7 +12,9 @@ En ligne : https://dunandchatellet.fr/Nim/nim.html
 | Originale, en Python (Tkinter) | `python-source/nim.py`, compilée en `Nim.exe` |
 | Portage web, jouable sans rien installer | `nim.html`, `nim.css`, `nim.js` |
 
-Le portage suit la version Python règle pour règle, y compris la stratégie de l'adversaire.
+**Qui a écrit quoi :** la version Python est de moi. Le portage web (`nim.html`,
+`nim.css`, `nim.js`) a été écrit par une IA (Claude) à partir de mon code Python, dont il
+suit les règles une à une, y compris la stratégie de l'adversaire.
 
 ## Lancer la version Python
 
